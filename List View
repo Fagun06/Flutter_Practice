@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+
+class IdCard extends StatelessWidget {
+  const IdCard ({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var arrList = ['abc','def','ghi','jkl','def','ghi','jkl','def','ghi','jkl'];
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("Id Card"))
+        ),
+      body: ListView.separated(itemBuilder: (context,index){
+        return Text(arrList[index], style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),);
+        
+      },
+         itemCount: arrList.length,
+         separatorBuilder: (context, index) {
+            return Divider(height: 100,);
+         },
+      )
+    );
+  }
+}
