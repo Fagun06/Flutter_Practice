@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+class IdCard extends StatelessWidget {
+  const IdCard ({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var list = ["a","b","c","d","e","f","g","i","j"];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("Id Card"))
+        ),
+      body: ListView.separated(itemBuilder: (context,index) {
+          return ListTile(
+            leading: Text('$index'),
+            title:Text(list[index]),
+            subtitle: Text('Number'),
+            trailing: Icon(Icons.add),
+          );
+      } ,
+      itemCount: list.length,
+      separatorBuilder: (context,index) {
+         return Divider(height: 20, thickness: 1,);
+      },
+      )
+    );
+  }
+}
