@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:style_and_theme/Widgets/rounded_btn.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: TextTheme(
+          headlineSmall: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          titleSmall:  TextStyle(fontSize: 11, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic)
+        )
+      ),
+      home:  MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => MyHomeState();
+}
+class MyHomeState extends State<MyHomePage> {
+
+  var no1Controller = TextEditingController();
+  var no2Controller = TextEditingController();
+
+  var result = "";
+
+  var count = 0;
+  @override
+  Widget build(BuildContext context) {
+   
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Hello'),
+
+      ),
+      body: ConstrainedBox (
+        constraints: BoxConstraints(
+          maxWidth: 300,
+          minWidth: 200,
+          maxHeight: 300,
+          minHeight: 100
+        ),
+        child: ElevatedButton(onPressed: () {
+
+        },
+         child: Text('Click'))
+      )
+    );
+  }
+
+}
