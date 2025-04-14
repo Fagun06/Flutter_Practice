@@ -1,0 +1,126 @@
+datafile--------
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:heroanimation/controller/details_controller.dart';
+
+
+
+class DetailsPage extends StatelessWidget {
+  final DetailsController controller = Get.put(DetailsController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Obx(() {
+            return Text(
+              'Getx',
+              style: TextStyle(color: controller.appBarColor.value),
+            );
+          }),
+        ),
+        
+        actions: [
+          
+          ElevatedButton(onPressed: () {
+            if(controller.appBarColor.value == Colors.blue) {
+              controller.appBarColor.value = Colors.red;
+            }
+            else {
+               controller.appBarColor.value = Colors.blue;
+            }
+          }, child: Text('Click'))
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+           
+           
+            Obx(() {
+              
+              if (controller.result >= 80) {
+                controller.grad = "A+";
+                controller.cmt = "Great Result";
+                controller.resCol = Colors.green; 
+              } else if (controller.result >= 70) {
+                controller.grad = "A";
+                controller.cmt = "Good Result";
+                controller.resCol = Colors.grey; 
+              } else if(controller.result>=60){
+                controller.grad = "A-";
+                controller.cmt = "Need to good Result";
+                controller.resCol = Colors.blue; 
+              }else if(controller.result>=50){
+                controller.grad = "B";
+                controller.cmt = "Medium Result";
+                controller.resCol = Colors.deepOrange; 
+              }else if(controller.result>=40){
+                controller.grad = 'c';
+                controller.cmt = "Not Good Result";
+                controller.resCol = Colors.orange; 
+              }else if(controller.result>=33){
+                controller.grad = "D";
+                controller.cmt = "Bad Result";
+                controller.resCol = Colors.yellow; 
+              }else {
+                controller.grad = "F";
+                controller.cmt = "Very Very Bad Result";
+                controller.resCol = Colors.red; 
+              }
+              
+              return Column(
+                children: [
+                  Text('${controller.cmt}',style: TextStyle(fontSize: 21,color: Colors.orange),),
+                  Text('${controller.grad}',style: TextStyle(fontSize: 50),),
+                  Text(
+                    
+                    "Result = ${controller.result}",
+                      style: TextStyle(fontSize: 21, color: controller.resCol),
+                  
+                  ),
+                ],
+              );
+            }),
+            ElevatedButton(
+
+              onPressed: () {
+               
+                controller.result+=5;
+                if(controller.result>100) controller.result -= 5;
+              },
+              child: Text('Increment'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+               
+                controller.result-=5;
+                if(controller.result<0) controller.result += 5;
+              },
+              child: Text('Decrement'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+controller ---
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class DetailsController extends GetxController {
+  var result = 0.obs; 
+   var appBarColor = Colors.blue.obs;
+   var resCol = Colors.blue;
+   var grad = "";
+   var cmt = "";
+}
+
+
+
